@@ -1,0 +1,78 @@
+<div class="pcontainer">
+    <div class="ui-grid ui-grid-responsive"style="padding-top: 50px;">
+        <div class="ui-grid-col-5" style="padding-top: 0px;">                
+            <h2 style="padding-left:10px">Added Experiences</h2>   
+            <p-accordion [multiple]="true" *ngIf="uploadedExperience.length > 0">
+                <p-accordionTab *ngFor='let obj of uploadedExperience' [header]= obj.jobRole >
+                        <p>{{ obj.teamrole}}</p>
+                        <p>{{ obj.technologiesUsed }}</p>
+                        <p>{{ obj.joiningDate }}</p>
+                        <p>{{ obj.resigningDate }}</p>
+                        <p>{{ obj.jobDescription}}</p>
+                </p-accordionTab>
+            </p-accordion> 
+            <div *ngIf="uploadedExperience.length == 0">
+                <label style="padding-left:10px">No Experiences Added</label>
+            </div>
+        </div>
+       
+      <div class="ui-grid-col-7" style="padding-left: 30px;">
+        <h2 style="padding-left:10px">Add Experiences</h2>
+        <form [formGroup]=experienceForm (ngSubmit)=onSubmit()>
+            <div class="ui-grid ui-grid-responsive" style="padding-top: 10px;">
+                <div class="ui-grid-col-6" style="padding-left:10px">
+                    <div class="form-group">
+                        <label for="jobRole">Job Role</label>
+                        <input type="text" class="form-control" formControlName=jobRole>
+                        <small class="text-danger" *ngIf="!experienceForm .get('jobRole').valid && experienceForm .get('jobRole').touched">Field is required</small>
+                    </div>	
+                </div>
+                <div class="ui-grid-col-6" style="padding-left:10px">
+                    <div class="form-group">
+                        <label for="teamrole">Team Role</label>
+                        <input type="text" class="form-control" formControlName=teamrole>
+                        <small class="text-danger" *ngIf="!experienceForm .get('teamrole').valid && experienceForm .get('teamrole').touched">Field is required</small>
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid ui-grid-responsive" style="padding-top: 10px;">
+                <div class="ui-grid-col-6" style="padding-left:10px">
+                    <div class="form-group">
+                        <label for="joiningDate">Joining Date</label>
+                        <input type="date" class="form-control" formControlName=joiningDate>
+                        <small class="text-danger" *ngIf="!experienceForm .get('joiningDate').valid && experienceForm .get('joiningDate').touched">Field is required</small>    				
+                      </div>
+                </div>
+                <div class="ui-grid-col-6" style="padding-left:10px">
+							<div class="form-group">
+                                <label for="resigningDate">Resigning Date</label>
+                              <input type="date" class="form-control" formControlName=resigningDate>
+                              <small class="text-danger" *ngIf="!experienceForm.get('resigningDate').valid && experienceForm.get('resigningDate').touched">Field is required</small>
+                            </div>	
+                </div>
+            </div>
+            <div class="ui-grid ui-grid-responsive" style="padding-top: 10px;">
+                <div class="ui-grid-col-12" style="padding-left:10px">
+                    <div class="form-group">
+                        <label for="technologiesUsed">Technologies Used</label>
+                        <input type="text" class="form-control" formControlName=technologiesUsed>
+                        <small class="text-danger" *ngIf="!experienceForm .get('technologiesUsed').valid && experienceForm .get('technologiesUsed').touched">Field is required</small>	
+                    </div>
+                </div>
+                <div class="ui-grid-col-12" style="padding-left:10px">
+                    <div class="form-group">
+                      <label for="jobDescription">Job Description</label>
+                      <textarea name="jobDescription" id="input" class="form-control" rows="2" formControlName=jobDescription required="required"></textarea>
+                      <small class="text-danger" *ngIf="!experienceForm.get('jobDescription').valid && experienceForm.get('jobDescription').touched">Field is required</small>
+                    </div>	
+                </div>
+            </div>
+            <div class="ui-grid ui-grid-responsive">
+                <div class="ui-grid-col-12" style="padding-left:10px">
+                    <button type="submit" class="btn btn-primary" [disabled]="!(experienceForm.valid && experienceForm.touched)">Add Experience</button>
+                </div>
+            </div>
+
+        </form>
+    </div>  
+</div>

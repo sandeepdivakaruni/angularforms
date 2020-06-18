@@ -1,0 +1,123 @@
+<div class="pcontainer">
+    <div class="ui-grid ui-grid-responsive" style="padding-top: 50px;">
+        <div class="ui-grid-col-5" style="padding-top: 20px;">
+            <h2 style="padding-left:10px">Added Informaion</h2>
+            <p-accordion [multiple]="true" *ngIf="uploadedSchools.length > 0">
+                <p-accordionTab *ngFor='let school of uploadedSchools' [header]= school.college_name >
+                    <p>{{school.college_type}}</p>
+                    <p>{{school.qualification}}</p>
+                    <p>{{school.course}}</p>
+                    <p>{{school.percentage_type}}</p>
+                    <p>{{school.percentage}}</p>
+                    <p>{{school.start_year}}</p>
+                    <p>{{school.end_year}}</p>
+                    <p>{{school.college_address}}</p>
+                </p-accordionTab>
+            </p-accordion> 
+            <div *ngIf="uploadedSchools.length == 0">
+                <label style="padding-left:10px">No schools/colleges added</label>
+            </div>
+        </div>
+        <br>
+
+        <div class="ui-grid-col-7" style="padding-left: 20px;">
+            <h2 style="padding-left: 10px;">Add Academic Informaion</h2>
+		    <form [formGroup]=academicForm (ngSubmit)=onSubmit()>
+                <div class="ui-grid ui-grid-responsive">
+                    <div class="ui-grid-col-6" style="padding-left: 10px;">
+                        <div class="form-group">
+                            <label for="collegeAddress">Schoole/College/Institute Name</label>
+                            <input type="text" class="form-control" formControlName=college_name>
+                            <small class="text-danger" *ngIf="!academicForm.get('college_name').valid && academicForm.get('college_name').touched">Field is required</small>
+                        </div>	
+                    </div>    
+                        <div class="ui-grid-col-6" style="padding-left: 10px;">
+                            <div class="form-group">
+                                <label for="college_type">College Type</label>
+                                <select class="form-control" formControlName=college_type> 
+                                    <option value="" selected>Select collenge type</option>
+                                    <option value="IIT">IIT</option>
+                                    <option value="IIIT">IIIT</option>
+                                    <option value="NIT">NIT</option>
+                                    <option value="JNTU">JNTU</option>
+                                    <option value="HS">High School</option>
+                                    <option value="Other">Other</option>   
+                                </select>
+                                <small class="text-danger" *ngIf="!academicForm.get('college_type').valid && academicForm.get('college_type').touched">Field is required</small>
+                            </div>	
+                        </div>
+                </div> 
+                <div class="ui-grid ui-grid-responsive">
+                    <div class="ui-grid-col-6" style="padding-left: 10px;">
+                        <div class="form-group">
+                            <label for="qualification">Qualification</label>
+                          <select class="form-control" formControlName=qualification>
+                              <option value="" selected>Select Qualification</option>
+                              <option value="IIT">B.Tech</option>
+                              <option value="IIIT">BE</option>
+                              <option value="NIT">High School</option>
+                              <option value="JNTU">Intermediate</option>
+                              <option value="Other">Other</option>
+                            </select>
+                        </div>	
+                    </div>
+                    <div class="ui-grid-col-6" style="padding-left: 10px;">
+                        <div class="form-group">
+                            <label for="course">Course</label>
+                            <select class="form-control" formControlName=course>
+                                <option value="" selected>Select Course</option>
+                                <option value="CSE">Computer Science</option>
+                                <option value="ECE">Electrical Engineering</option>
+                                <option value="MECH">Mechanical Engineering</option>
+                                <option value="CHEM">Chemical Engineering</option>
+                                <option value="Other">Other</option>    
+                            </select>		    				
+                        </div>	
+                    </div>
+                </div>  
+                <div class="ui-grid ui-grid-responsive">
+                    <div class="ui-grid-col-6" style="padding-left: 10px;">
+                        <div class="form-group">
+                            <label for="percentage_type">Percentage Type</label>
+                            <input type="text" class="form-control" formControlName=percentage_type>
+                        </div>	
+                    </div> 
+                    <div class="ui-grid-col-6" style="padding-left: 10px;">
+                        <div class="form-group">
+                            <label for="percentage">Percentage</label>
+                            <input type="number" class="form-control" formControlName=percentage>
+                         </div>	
+                    </div> 
+                </div> 
+                <div class="ui-grid ui-grid-responsive">
+                    <div class="ui-grid-col-6" style="padding-left: 10px;">
+                            <div class="form-group">
+                                  <label for="start_year">Start Year</label>
+                                <input type="date" placeholder="Start Year" class="form-control"  formControlName=start_year>
+                             </div>	
+                    </div>
+                    <div class="ui-grid-col-6" style="padding-left: 10px;">
+                        <div class="form-group">
+                            <label for="end_year">End Year</label>
+                            <input type="date" class="form-control" placeholder=" End Year"  formControlName=end_year>
+                        </div>	
+                    </div>
+                </div>  
+                <div class="ui-grid ui-grid-responsive">
+                    <div class="ui-grid-col-12" style="padding-left: 10px;">
+                        <div class="form-group">
+                            <label for="college_address">College Address</label>
+                            <textarea name="college_address" id="input" class="form-control" rows="2" formControlName=college_address required="required"></textarea>
+                        </div>
+                    </div>  
+               </div>
+               <div class="ui-grid ui-grid-responsive">
+                  <div class="ui-grid-col-12" style="padding-left: 10px;">
+                    <button type="submit" class="btn btn-primary" [disabled]="!(academicForm.valid && academicForm.touched)">Add Information</button>
+                  </div>
+               </div>
+               
+            </form>
+        </div>
+    </div>  
+</div>

@@ -1,0 +1,11 @@
+.pcontainer{
+    position: relative;
+    padding-top: 10px;
+    border-color: black;
+  }
+  select.ng-touched.ng-invalid, input.ng-touched.ng-invalid{
+	border: 1px solid red;
+	box-shadow: 0 0 5px inset red;
+	
+}
+  

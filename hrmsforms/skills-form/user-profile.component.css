@@ -1,0 +1,15 @@
+h1 {
+    margin-bottom: 1rem;
+    font-weight: lighter;
+    font-family: 'Muli';
+    font-size: 3em;
+    line-height: px;
+    text-align: center; 
+}
+.form-container {
+    font-weight: lighter;
+    font-family: 'Muli';
+    font-size: 1em;
+    float: center;
+   
+}

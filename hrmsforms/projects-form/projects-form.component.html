@@ -1,0 +1,78 @@
+<div class="pcontainer">
+    <div class="ui-grid ui-grid-responsive"style="padding-top: 50px;">
+        <div class="ui-grid-col-5" style="padding-top: 0px;">                
+            <h2 style="padding-left:10px">Added Projects</h2>   
+            <p-accordion [multiple]="true" *ngIf="addedForms.length > 0">
+                <p-accordionTab *ngFor='let obj of  addedForms' [header]= obj.ProjectName >
+                    <p>{{ obj.TeamSize }}</p>
+                    <p>{{ obj.TechnologiesUsed }}</p>
+                    <p>{{ obj.ProjectStartDate }}</p>
+                    <p>{{ obj.ProjectEndDate }}</p>
+                    <p>{{ obj.Description }}</p>
+                </p-accordionTab>
+            </p-accordion> 
+            <div *ngIf="addedForms.length == 0">
+                <label style="padding-left:10px">No Projects Added</label>
+            </div>
+        </div>
+    <div class="ui-grid-col-7" style="padding-left: 30px;">
+        <h2 style="padding-left:10px">Add Projects</h2>
+        <form [formGroup]=rForm (ngSubmit)=onSubmit()>
+            <div class="ui-grid ui-grid-responsive" style="padding-top: 10px;">
+                <div class="ui-grid-col-6" style="padding-left:10px">
+                    <div class="form-group">
+                        <label for="ProjectName">Project Name</label>
+                        <input type="text" class="form-control " formControlName=ProjectName>
+                        <small class="text-danger" *ngIf="!rForm.get('ProjectName').valid && rForm.get('ProjectName').touched">Field is required</small>
+                    </div>	
+                </div>
+                <div class="ui-grid-col-6"  style="padding-left:10px">
+                    <div class="form-group">
+                        <label for="TeamSize">Team Size</label>
+                        <input type="number" class="form-control " formControlName=TeamSize>
+                        <small class="text-danger" *ngIf="!rForm.get('TeamSize').valid && rForm.get('TeamSize').touched">Field is required</small>
+                    </div>	
+                </div>
+            </div>
+            <div class="ui-grid ui-grid-responsive" style="padding-top: 10px;">
+                <div class="ui-grid-col-6"  style="padding-left:10px">
+                    <div class="form-group">
+                        <label for="ProjectStartDate">Project Start Date</label>
+                        <input type="date" class="form-control " formControlName=ProjectStartDate>
+                        <small class="text-danger" *ngIf="!rForm.get('ProjectStartDate').valid && rForm.get('ProjectStartDate').touched">Field is required</small>    				
+                    </div>	         
+                </div>
+                <div class="ui-grid-col-6"  style="padding-left:10px">
+                    <div class="form-group">
+                        <label for="ProjectEndDate">Project End Date</label>
+                      <input type="date"  class="form-control " formControlName=ProjectStartDate required>
+                      <small class="text-danger" *ngIf="!rForm.get('ProjectStartDate').valid && rForm.get('ProjectStartDate').touched">Field is required</small>
+                    </div>	   
+                </div>
+            </div>
+            <div class="ui-grid ui-grid-responsive" style="padding-top: 10px;">
+                <div class="ui-grid-col-12"  style="padding-left:10px">
+                    <div class="form-group">
+                        <label for="TechnologiesUsed">Technologies Used</label>
+                        <input type="text" class="form-control " formControlName=TechnologiesUsed>
+                        <small class="text-danger" *ngIf="!rForm.get('TechnologiesUsed').valid && rForm.get('TechnologiesUsed').touched">Field is required</small>	
+                    </div>	
+                </div> 
+                <div class="ui-grid-col-12"  style="padding-left:10px">
+								<div class="form-group">
+                                    <label for="Description">Description</label>
+                                    <textarea name="Description" id="input" class="form-control" rows="2" formControlName=Description required="required"></textarea>
+                                  <small class="text-danger" *ngIf="!rForm.get('Description').valid && rForm.get('Description').touched">Field is required</small>
+                                </div>	
+                </div>
+            </div>
+            <div class="ui-grid ui-grid-responsive">
+                <div class="ui-grid-col-12" style="padding-left:10px">
+                    <button type="submit" class="btn btn-primary" [disabled]="(rForm.valid && rForm.touched)">Add Project</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+  </div>
+</div>
